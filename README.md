@@ -1,76 +1,230 @@
-## ✨ BILLSTACK ✨
+# ✨ BILLSTACK - Bill Management System
 
-A full-stack application built with **Angular**, **Spring Boot**, and **MongoDB** to manage bills, receipts, and payments efficiently.
+A modern full-stack application built with **Angular**, **Spring Boot**, and **MongoDB** designed to streamline bill, receipt, and payment management with powerful analytics and user-friendly interfaces.
 
-## 🛠 FEATURES
+## 🚀 Features
 
-✅ Create and manage bills & receipts
-✅ User authentication & role-based access
-✅ Persistent storage using MongoDB
-✅ Dashboard & analytics
-✅ REST APIs with Spring Boot
-✅ Modern Angular frontend
+- **📋 Bill Management** - Create, view, edit, and organize bills and receipts
+- **👥 User Authentication** - Secure login with role-based access control
+- **📊 Dashboard Analytics** - Visual insights into spending patterns and trends
+- **💾 Data Persistence** - MongoDB integration for reliable data storage
+- **🔒 RESTful APIs** - Robust Spring Boot backend with secure endpoints
+- **🎨 Modern UI** - Responsive Angular frontend with Tailwind CSS
 
-## 💻 TECH STACK
+## 🛠 Tech Stack
 
-🔹 Frontend: Angular 17, TypeScript, Tailwind/SCSS
-🔹 Backend: Spring Boot 3, Java 17, Maven
-🔹 Database: MongoDB
-🔹 Deployment: Docker + Nginx
+- **Frontend**: Angular 17, TypeScript, Tailwind CSS, SCSS
+- **Backend**: Spring Boot 3, Java 17, Spring Security, JWT
+- **Database**: MongoDB
+- **Build Tools**: Maven, npm
+- **Deployment**: Docker, Docker Compose, Nginx
 
-## 📂 PROJECT STRUCTURE
+## 📁 Project Structure
 
+```
 billstack/
-├── billstack-frontend/   🎨 Angular app
-│   ├── src/              📂 Frontend source code
-│   ├── angular.json      ⚙️ Angular config
-│   └── package.json      📦 Dependencies
+├── 📂 billstack-frontend/          # Angular application
+│   ├── src/
+│   │   ├── app/                    # Main application code
+│   │   │   ├── components/         # Reusable UI components
+│   │   │   ├── services/           # API services
+│   │   │   ├── guards/             # Route protection
+│   │   │   └── models/             # TypeScript interfaces
+│   │   ├── assets/                 # Static assets
+│   │   └── environments/           # Environment configurations
+│   ├── angular.json                # Angular configuration
+│   └── package.json                # Frontend dependencies
 │
-├── billstack-backend/    ⚡ Spring Boot app
-│   ├── src/main/java/    📂 Backend source code
-│   ├── pom.xml           📦 Maven dependencies
+├── 📂 billstack-backend/           # Spring Boot application
+│   ├── src/main/java/
+│   │   └── com/billstack/          # Package structure
+│   │       ├── controllers/        # REST API endpoints
+│   │       ├── models/             # Data models
+│   │       ├── repositories/       # Data access layer
+│   │       ├── services/           # Business logic
+│   │       └── security/           # Authentication & authorization
+│   ├── src/main/resources/
+│   │   ├── application.properties  # Spring configuration
+│   │   └── application-dev.properties # Development configuration
+│   ├── pom.xml                     # Maven dependencies
+│   └── Dockerfile                  # Container configuration
 │
-└── README.md
+├── 📂 docker/                      # Docker configuration files
+├── docker-compose.yml              # Multi-container setup
+└── README.md                       # Project documentation
+```
 
-## ⚙️ SETUP & INSTALLATION
+## ⚡ Quick Start
 
-1️⃣ Clone the Repository
-👉 git clone [https://github.com/your-username/billstack.git](https://github.com/your-username/billstack.git)
-👉 cd billstack
+### Prerequisites
 
-2️⃣ Setup Backend (Spring Boot)
-👉 cd billstack-backend
-👉 mvn clean install
-👉 mvn spring-boot\:run
-🌐 Runs at: [http://localhost:8080](http://localhost:8080)
+- Java 17 or higher
+- Node.js 18 or higher
+- Angular CLI 17
+- Maven 3.6+
+- MongoDB 5.0+ (or Docker)
+- Docker (optional)
 
-3️⃣ Setup Frontend (Angular)
-👉 cd billstack-frontend
-👉 npm install
-👉 ng serve
-🌐 Runs at: [http://localhost:4200](http://localhost:4200)
+### Local Development Setup
 
-## 🐳 DOCKER SETUP
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/billstack.git
+   cd billstack
+   ```
 
-👉 docker-compose up --build
+2. **Set Up MongoDB**
+   ```bash
+   # Option 1: Using Docker
+   docker run -d -p 27017:27017 --name mongodb mongo:5.0
+   
+   # Option 2: Install MongoDB locally
+   # Follow instructions at https://docs.mongodb.com/manual/installation/
+   ```
 
-## 🔐 ENVIRONMENT VARIABLES (billstack-backend/.env)
+3. **Configure Backend**
+   ```bash
+   cd billstack-backend
+   
+   # Create environment file
+   cp src/main/resources/application-dev.properties.example src/main/resources/application-dev.properties
+   
+   # Edit the file with your MongoDB and JWT settings
+   # nano src/main/resources/application-dev.properties
+   ```
 
-MONGO\_URI = mongodb://localhost:27017/billDB
-JWT\_SECRET = your-secret-key
+4. **Run the Backend**
+   ```bash
+   # Build and run with Maven
+   mvn clean install
+   mvn spring-boot:run
+   
+   # API will be available at http://localhost:8080
+   # Swagger UI at http://localhost:8080/swagger-ui.html
+   ```
 
-## 📜 SCRIPTS
+5. **Set Up Frontend**
+   ```bash
+   cd ../billstack-frontend
+   
+   # Install dependencies
+   npm install
+   
+   # Serve with hot reload
+   ng serve
+   
+   # Application will be available at http://localhost:4200
+   ```
 
-▶️ Angular: npm run build / npm start
-▶️ Spring Boot: mvn spring-boot\:run
+### Docker Deployment
 
-## 🤝 CONTRIBUTING
+1. **Build and Run with Docker Compose**
+   ```bash
+   # From the project root directory
+   docker-compose up -d --build
+   
+   # Application will be available at http://localhost:80
+   ```
 
-1. Fork the repo
-2. Create a new branch
-3. Commit changes
-4. Open a Pull Request
+2. **Stop the Application**
+   ```bash
+   docker-compose down
+   ```
 
-## 📄 LICENSE
+## 🔧 Configuration
 
-MIT License © 2025 Your Name
+### Environment Variables
+
+Create a `.env` file in the backend directory:
+
+```properties
+# MongoDB Configuration
+MONGO_URI=mongodb://localhost:27017/billstack
+MONGO_DATABASE=billstack
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key
+JWT_EXPIRATION=86400000
+
+# Server Configuration
+SERVER_PORT=8080
+
+# CORS Configuration
+FRONTEND_URL=http://localhost:4200
+```
+
+### Frontend Environment
+
+Update `src/environments/environment.ts`:
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api',
+  appName: 'BillStack'
+};
+```
+
+## 📊 API Documentation
+
+Once the backend is running, access the API documentation at:
+
+- Swagger UI: http://localhost:8080/swagger-ui.html
+- OpenAPI Spec: http://localhost:8080/v3/api-docs
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a pull request
+
+### Development Guidelines
+
+- Follow Angular style guide for frontend code
+- Adhere to Java coding conventions for backend
+- Write tests for new features
+- Update documentation accordingly
+- Ensure all tests pass before submitting PR
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **MongoDB Connection Error**
+   - Ensure MongoDB is running
+   - Check connection string in application properties
+
+2. **JWT Authentication Issues**
+   - Verify JWT secret is set correctly
+   - Check token expiration settings
+
+3. **CORS Errors**
+   - Confirm frontend URL is whitelisted in backend configuration
+
+4. **Build Failures**
+   - Ensure correct versions of Java, Node.js, and Angular CLI
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Angular team for the fantastic framework
+- Spring Boot team for the robust backend framework
+- MongoDB for the reliable database solution
+- Contributors and testers
+
+---
+
+**Need Help?** 
+- Create an issue on GitHub
+- Check the documentation
+- Reach out to the development team
+
+---
+*Built with ❤️ using Angular, Spring Boot, and MongoDB*
