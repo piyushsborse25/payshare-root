@@ -1,0 +1,27 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+i,
+li,
+a {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-snackbar button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.8;
+  cursor: not-allowed;
+}

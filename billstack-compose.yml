@@ -1,0 +1,41 @@
+version: '3.9'
+
+volumes:
+  billstack-mongo-data:
+
+services:
+  billstack-mongodb:
+    image: mongo:7.0
+    container_name: billstack-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: billAdmin
+      MONGO_INITDB_ROOT_PASSWORD: bill@123
+      MONGO_INITDB_DATABASE: billDB
+    volumes:
+      - billstack-mongo-data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+
+  billstack-backend:
+    build: ./backend
+    container_name: billstack-backend
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_DATA_MONGODB_HOST: billstack-mongodb
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: billDB
+      SPRING_DATA_MONGODB_USERNAME: billAdmin
+      SPRING_DATA_MONGODB_PASSWORD: bill@123
+      SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: billDB
+    depends_on:
+      - billstack-mongodb
+
+  billstack-frontend:
+    build: ./frontend
+    container_name: billstack-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - billstack-backend

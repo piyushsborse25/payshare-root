@@ -1,0 +1,97 @@
+<div class="container-fluid mat-elevation-z8">
+  <div class="toolbar">
+    <mat-toolbar>
+      <button mat-icon-button matTooltip="View Bill" [ngClass]="enableEditBill()" [matTooltipPosition]="'above'"
+        class="toolbar-button" (click)="view()">
+        <i class="fa-solid fa-eye toolbar-icon"></i>
+      </button>
+      <button mat-icon-button matTooltip="Edit Bill" [ngClass]="enableEditBill()" [matTooltipPosition]="'above'"
+        class="toolbar-button" (click)="edit()">
+        <i class="fa-solid fa-pen-to-square toolbar-icon"></i>
+      </button>
+      <button mat-icon-button matTooltip="Delete Bill" [ngClass]="enableDeleteBill()" [matTooltipPosition]="'above'"
+        class="toolbar-button" (click)="deleteBill()">
+        <i class="fa-solid fa-trash toolbar-icon red"></i>
+      </button>
+    </mat-toolbar>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+    <!-- Select Column -->
+    <ng-container matColumnDef="select" [sticky]="true">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="toggleAllSelection()" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox (change)="toggleSingle(element)" [checked]="selection.isSelected(element)"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Bill ID Column -->
+    <ng-container matColumnDef="billId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill ID</th>
+      <td mat-cell *matCellDef="let element; index as i">
+        <mat-chip>{{ getItemIdx(i) }}</mat-chip>
+      </td>
+    </ng-container>
+
+    <!-- Store Column -->
+    <ng-container matColumnDef="store">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Store</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="'disabled'">
+        <mat-form-field class="w-100">
+          <input matInput [value]="element.store" placeholder="Store Name" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Bill Date Column -->
+    <ng-container matColumnDef="billDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill Date</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="'disabled'">
+        <mat-form-field class="w-100">
+          <input matInput [value]="formatReadableDate(element.billDate)" placeholder="Date" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Total Items Column -->
+    <ng-container matColumnDef="totalItems">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Items</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="'disabled'">
+        <mat-form-field class="w-100">
+          <input matInput type="number" [value]="element.totalItems" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Total Quantity Column -->
+    <ng-container matColumnDef="totalQuantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Quantity</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="'disabled'">
+        <mat-form-field class="w-100">
+          <input matInput type="number" [value]="element.totalQuantity" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Total Value Column -->
+    <ng-container matColumnDef="totalValue">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Value (₹)</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="'disabled'">
+        <mat-form-field class="w-100">
+          <input matInput type="text" [value]="'₹ ' + element.totalValue" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Table Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <!-- Paginator -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons>
+  </mat-paginator>
+</div>

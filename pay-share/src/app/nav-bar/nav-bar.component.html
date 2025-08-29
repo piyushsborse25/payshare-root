@@ -1,0 +1,56 @@
+<mat-sidenav-container class="nav-bar" autosize>
+  <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0">
+    <div class="menu-drawer" style="background-color: #1c2331;">
+      <div class="menu-ico-drawer">
+        <i class="fa-solid fa-xmark fa-2x close-ico" (click)="sidenav.toggle()" style="color: #10b5a3;"></i>
+      </div>
+      <div class="menu-list">
+        <ul>
+          <li [routerLink]="['/home']" routerLinkActive="router-link-active" class="menu-item">Home</li>
+          <li [routerLink]="['/manage']" routerLinkActive="router-link-active" class="menu-item">Manage</li>
+          <li [routerLink]="['/about']" routerLinkActive="router-link-active" class="menu-item">About Us</li>
+          <li [routerLink]="['/contact']" routerLinkActive="router-link-active" class="menu-item">Contact Us</li>
+        </ul>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="secondary">
+      <div class="logo">
+        <div *ngIf="!sidenav.opened" class="menu-ico" (click)="sidenav.toggle()">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </div>
+        <img class="mx-3" src="../../assets/images/logo-payshare.png" alt="logo" width="75px">
+      </div>
+      <div class="nav-bar-extras">
+        <ul>
+          <a [mat-menu-trigger-for]="dm">Manage</a>
+          <a>Customize</a>
+          <a>Support</a>
+        </ul>
+        <ul>
+          <a class="user">
+            <i class="fa-solid fa-user-tie fa-xl"></i>
+          </a>
+          <a class="user">
+            <i class="fa-solid fa-address-book fa-xl"></i>
+            <span>&nbsp;&nbsp;Admin</span>
+          </a>
+        </ul>
+      </div>
+
+      <mat-menu #dm>
+        <button mat-menu-item [routerLink]="['/manage/import-bill']">Import Bill</button>
+        <button mat-menu-item [routerLink]="['/manage/list-bills']">List Bills</button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <div class="tool-bar-space"></div>
+    
+    <div class="outlet-space">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
