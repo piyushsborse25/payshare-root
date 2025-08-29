@@ -73,4 +73,4 @@ JWT\_SECRET = your-secret-key
 
 ## 📄 LICENSE
 
-MIT License © 2025
+MIT License © 2025 Your Name
