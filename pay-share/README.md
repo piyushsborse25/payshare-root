@@ -1,111 +1,76 @@
-# Payshare
+## ✨ BILLSTACK ✨
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+A full-stack application built with **Angular**, **Spring Boot**, and **MongoDB** to manage bills, receipts, and payments efficiently.
 
-## Development server
+## 🛠 FEATURES
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+✅ Create and manage bills & receipts
+✅ User authentication & role-based access
+✅ Persistent storage using MongoDB
+✅ Dashboard & analytics
+✅ REST APIs with Spring Boot
+✅ Modern Angular frontend
 
-## Setup Configuration
+## 💻 TECH STACK
 
-### 1. **Install FontAwesome**
-FontAwesome is a popular icon library. To install it:
+🔹 Frontend: Angular 17, TypeScript, Tailwind/SCSS
+🔹 Backend: Spring Boot 3, Java 17, Maven
+🔹 Database: MongoDB
+🔹 Deployment: Docker + Nginx
 
-```bash
-npm install @fortawesome/fontawesome-free
-```
+## 📂 PROJECT STRUCTURE
 
-You also need to add the CSS for FontAwesome to your `angular.json` file:
+billstack/
+├── billstack-frontend/   🎨 Angular app
+│   ├── src/              📂 Frontend source code
+│   ├── angular.json      ⚙️ Angular config
+│   └── package.json      📦 Dependencies
+│
+├── billstack-backend/    ⚡ Spring Boot app
+│   ├── src/main/java/    📂 Backend source code
+│   ├── pom.xml           📦 Maven dependencies
+│
+└── README.md
 
-```json
-"styles": [
-  "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-]
-```
+## ⚙️ SETUP & INSTALLATION
 
-Alternatively, in your component's CSS, you can also import FontAwesome as:
+1️⃣ Clone the Repository
+👉 git clone [https://github.com/your-username/billstack.git](https://github.com/your-username/billstack.git)
+👉 cd billstack
 
-```scss
-@import "@fortawesome/fontawesome-free/css/all.css";
-```
+2️⃣ Setup Backend (Spring Boot)
+👉 cd billstack-backend
+👉 mvn clean install
+👉 mvn spring-boot\:run
+🌐 Runs at: [http://localhost:8080](http://localhost:8080)
 
-### 2. **Install Angular FontAwesome**
+3️⃣ Setup Frontend (Angular)
+👉 cd billstack-frontend
+👉 npm install
+👉 ng serve
+🌐 Runs at: [http://localhost:4200](http://localhost:4200)
 
-This package allows you to use FontAwesome icons as Angular components.
+## 🐳 DOCKER SETUP
 
-```bash
-npm install @fortawesome/angular-fontawesome
-```
+👉 docker-compose up --build
 
-After installing, make sure to import the `FontAwesomeModule` in your module (`app.module.ts`):
+## 🔐 ENVIRONMENT VARIABLES (billstack-backend/.env)
 
-```typescript
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+MONGO\_URI = mongodb://localhost:27017/billDB
+JWT\_SECRET = your-secret-key
 
-@NgModule({
-  imports: [
-    // other imports
-    FontAwesomeModule
-  ]
-})
-export class AppModule { }
-```
+## 📜 SCRIPTS
 
-### 3. **Install Bootstrap**
+▶️ Angular: npm run build / npm start
+▶️ Spring Boot: mvn spring-boot\:run
 
-Bootstrap provides responsive design and UI components.
+## 🤝 CONTRIBUTING
 
-To install it:
+1. Fork the repo
+2. Create a new branch
+3. Commit changes
+4. Open a Pull Request
 
-```bash
-npm install bootstrap --save
-```
+## 📄 LICENSE
 
-Add the Bootstrap CSS and JavaScript files to your `angular.json` file:
-
-```json
-"styles": [
-  "./node_modules/bootstrap/dist/css/bootstrap.min.css"
-],
-"scripts": [
-  "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-]
-```
-
-This ensures that Bootstrap's styles and JavaScript (like the dropdown or modal) will work seamlessly in your application.
-
-### 4. **TypeRoots for Angular Material**
-
-This step isn't required unless you're customizing Angular Material typings or configurations. Normally, Angular Material is used by importing `MatModule` into your app module.
-
-However, you mentioned:
-
-```json
-"typeRoots": ["./node_modules/@angular/material"]
-```
-
-This setting is used to define the paths for type declarations. It might be necessary if you have custom typings or if you're working with specific types from Angular Material.
-
-### Conclusion
-
-Once you've run these `npm install` commands and added the configurations to `angular.json` and `app.module.ts`, you can start using FontAwesome icons and Bootstrap in your Angular project. Let me know if you need further assistance with this setup!
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+MIT License © 2025
