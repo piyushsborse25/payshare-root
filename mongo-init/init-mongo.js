@@ -3,7 +3,7 @@ db = db.getSiblingDB('billDB');
 
 // Create app user
 db.createUser({
-  user: 'billAdminApp',
+  user: 'billAdmin',
   pwd: 'bill@123',
   roles: [
     { role: 'readWrite', db: 'billDB' },
